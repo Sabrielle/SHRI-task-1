@@ -9,7 +9,9 @@ function init() {
 	var da = 5;
 	var ds = 10;
 	var currentScale = 1;
-	var lastPosition = 0;
+	var lastPositionX = 0;
+	var lastPositionY = 0;
+	var currentStyleX, currentStyleY;
 	var zoom = document.getElementById('zoom');
 	var brightness = document.getElementById('brightness');
 
@@ -81,12 +83,21 @@ function init() {
 			}
 		}
 		else {
-			var dx = ev.clientX - historyArray[0].clientX;
-        	lastPosition = ev.clientX;
-			ev.target.style.transform = "translateX("+(lastPosition+dx)+"px) scale("+currentScale+")";
-			ev.target.style.webkitTransform = "translateX("+(lastPosition+dx)+"px) scale("+currentScale+")";
-			lastPosition += dx;
 			ev.target.style.transition = "all 1s ease-out";
+			var dx = ev.clientX - historyArray[0].clientX;
+			var currentStyle = ev.target.style.transform.match(/-?[\d+\.]*px+/g);
+			if(currentStyle) {
+				currentStyleX = currentStyle[0].split('px');
+			}
+        	lastPositionX = (typeof(currentStyleX) !== 'undefined' ) ? currentStyleX[0] : ev.clientX;
+        	var indentX = Number(lastPositionX)+Number(dx);
+        	if (Math.abs(indentX) > (currentScale * ((ev.target.offsetWidth * currentScale) - ev.target.offsetWidth)/(currentScale * 2))) return;
+        	else {
+				ev.target.style.transform = "translateX("+indentX+"px) scale("+currentScale+")";
+				ev.target.style.webkitTransform = "translateX("+indentX+"px) scale("+currentScale+")";
+				lastPositionX = indentX;
+				console.log("dx", dx, "indentX", indentX, "lastPositionX", lastPositionX);
+			}
 		}
 	}
 
