@@ -1,0 +1,23 @@
+{
+  "name": "shri-task-smart-house",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sabrielle/SHRI-task-1.git"
+  },
+  "author": "Anna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sabrielle/SHRI-task-1/issues"
+  },
+  "homepage": "https://github.com/Sabrielle/SHRI-task-1#readme",
+  "devDependencies": {
+    "@types/hls.js": "^0.10.2",
+    "typescript": "^3.1.3"
+  }
+}
