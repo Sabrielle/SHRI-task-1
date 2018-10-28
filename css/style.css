@@ -32,6 +32,7 @@ body {
   line-height: 1.5;
   color: #333333;
   text-align: left;
+  height: 100vh;
 }
 
 a {
@@ -77,6 +78,7 @@ p {
 
 .main-panel>.content {
   margin-top: 70px;
+  min-height: calc(100vh - 150px);
 }
 
 .navbar {
@@ -519,6 +521,14 @@ input[type=range]:focus {
     margin-bottom: 20px;
   }
 
+  .modal .modal-body {
+    width: 95%;
+  }
+
+  .modal-header .video-controls {
+    display: block;
+  }
+
 }
 
 @media only screen and (min-width: 769px) {
@@ -563,6 +573,10 @@ input[type=range]:focus {
 @media only screen and (min-width: 767px) and (max-width: 1100px) { 
   .content {
     width: 95% !important;
+  }
+
+  .modal .modal-body {
+    width: 90%;
   }
 }
 
@@ -629,7 +643,7 @@ footer ul li>a,
 footer p {
   text-decoration: none;
   color: #858585;
-  font-size: 12px;
+  font-size: .9rem;
 }
 
 .copy {
@@ -647,8 +661,87 @@ footer p {
   touch-action: none;
 }
 
+label {
+  font-size: 1rem;
+}
+
 #image {
     width: 100vw;
     touch-action: none;
   }
+
+.video {
+    width: 100%;
+    height: auto;
+    transition: 0.5s ease;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    padding-bottom: 70px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background: rgba(0,0,0,0.9);
+}
+
+.modal-body {
+  margin: 0 auto;
+  background: #F3F3F3;
+  border-radius: 20px;
+  width: 70%;
+  padding: 20px;
+  position: relative;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+label {
+  padding: 0 .5rem;
+}
+
+.video-controls {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#canvas {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    z-index: 10;
+}
+
+.modal-body { 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.close-modal {
+    font-weight: bold;
+    transition: 0.3s;
+}
 
